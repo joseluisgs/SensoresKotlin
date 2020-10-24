@@ -4,14 +4,14 @@ import android.graphics.Canvas
 import android.view.SurfaceHolder
 
 // Clase para el manejo del hilo
-class DrawThread(surfaceHolder: SurfaceHolder, panel: GroundView) : Thread() {
-    private var surfaceHolder: SurfaceHolder? = null
-    private var panel: GroundView? = null
+class DibujoThread(surfaceHolder: SurfaceHolder, panel: LienzoView) : Thread() {
+    private var superficeHolder: SurfaceHolder? = null
+    private var panel: LienzoView? = null
     private var run = false
 
     // Iniciación
     init {
-        this.surfaceHolder = surfaceHolder
+        this.superficeHolder = surfaceHolder
         this.panel = panel
     }
 
@@ -20,19 +20,19 @@ class DrawThread(surfaceHolder: SurfaceHolder, panel: GroundView) : Thread() {
         this.run = run
     }
 
-    // Método Run
+    // Método Run, sincronizamos los datos
     override fun run() {
         var c: Canvas? = null
         while (run) {
             c = null
             try {
-                c = surfaceHolder!!.lockCanvas(null)
-                synchronized(surfaceHolder!!) {
+                c = superficeHolder!!.lockCanvas(null)
+                synchronized(superficeHolder!!) {
                     panel!!.draw(c)
                 }
             } finally {
                 if (c != null) {
-                    surfaceHolder!!.unlockCanvasAndPost(c)
+                    superficeHolder!!.unlockCanvasAndPost(c)
                 }
             }
         }

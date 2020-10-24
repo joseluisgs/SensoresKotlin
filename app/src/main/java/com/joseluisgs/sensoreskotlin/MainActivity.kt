@@ -15,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity : AppCompatActivity(), SensorEventListener {
     // Mis variables
     private var mSensorManager: SensorManager? = null
-    private var mAccelerometer: Sensor? = null
-    var ground: GroundView? = null
+    private var mAcelerometro: Sensor? = null
+    var lienzo: LienzoView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         // Obtenemos la referencia al servicio
         mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         // Nos centramos en el acelerómetro
-        mAccelerometer = mSensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        mAcelerometro = mSensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
         // Preparamos la ventana
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
@@ -45,8 +45,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
 
         // set the view
-        ground = GroundView(this)
-        setContentView(ground)
+        lienzo = LienzoView(this)
+        setContentView(lienzo)
     }
 
     // Si cambia la preciśon
@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     // Si cambia el sensoor
     override fun onSensorChanged(event: SensorEvent?) {
         if (event != null) {
-            ground!!.updateMe(event.values[1], event.values[0])
+            // Actualizamos
+            lienzo!!.updateMe(event.values[1], event.values[0])
         }
     }
 
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onResume() {
         super.onResume()
         mSensorManager!!.registerListener(
-            this, mAccelerometer,
+            this, mAcelerometro,
             SensorManager.SENSOR_DELAY_GAME
         )
     }
