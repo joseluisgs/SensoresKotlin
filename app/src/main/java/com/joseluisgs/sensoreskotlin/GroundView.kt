@@ -75,8 +75,8 @@ class GroundView(context: Context?) : SurfaceView(context), SurfaceHolder.Callba
 
     // Pintamos el Canvas (lienzo)
     override fun draw(canvas: Canvas?) {
-        super.draw(canvas)
         if (canvas != null) {
+            super.draw(canvas)
             canvas.drawColor(0xFFAAAAA)
             canvas.drawBitmap(icon!!, cx, cy, null)
         }
