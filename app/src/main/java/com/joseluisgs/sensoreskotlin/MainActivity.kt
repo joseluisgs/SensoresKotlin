@@ -12,6 +12,8 @@ import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 
+// Lectura recomendada
+// https://developer.android.com/guide/topics/sensors/sensors_overview
 class MainActivity : AppCompatActivity(), SensorEventListener {
     // Mis variables
     private var mSensorManager: SensorManager? = null
