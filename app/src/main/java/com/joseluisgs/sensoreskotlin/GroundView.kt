@@ -78,7 +78,7 @@ class GroundView(context: Context?) : SurfaceView(context), SurfaceHolder.Callba
         super.draw(canvas)
         if (canvas != null) {
             canvas.drawColor(0xFFAAAAA)
-            canvas.drawBitmap(icon, cx, cy, null)
+            canvas.drawBitmap(icon!!, cx, cy, null)
         }
     }
 
